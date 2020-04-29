@@ -17,7 +17,8 @@ pipeline {
             steps {
                 sh "pwd"
                 sh "ls -a"
-                sh "docker --group-add $(stat -c '%g' /var/run/docker.sock) build . -t tomcatsamplewebapp:${env.BUILD_ID}"
+				sh "sudo chmod 777 /var/run/docker.sock"
+                sh "docker build . -t tomcatsamplewebapp:${env.BUILD_ID}"
             }
         }
 
